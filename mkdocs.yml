@@ -1,0 +1,35 @@
+INHERIT: .mkdocs-shared/shared/mkdocs.base.yml
+
+site_name: Wallpaper Menu
+site_description: Remove the current Windows slideshow photo from the desktop context menu.
+site_author: willtheorangeguy
+site_url: https://williamvdg.me/wallpaper-menu/
+
+repo_url: https://github.com/willtheorangeguy/wallpaper-menu
+repo_name: willtheorangeguy/wallpaper-menu
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; willtheorangeguy
+
+nav:
+  - Wallpaper Menu: index.md
+  - Getting started: getting-started.md
+  - Installation: installation.md
+  - Configuration: configuration.md
+  - Troubleshooting: troubleshooting.md
+  - FAQ: faq.md
+  - Development:
+      - Developer guide: development.md
+      - Architecture: architecture.md
+      - Commands: commands.md
+      - Testing: testing.md
+      - CI/CD: ci-cd.md
+  - About:
+      - Releases: https://github.com/willtheorangeguy/wallpaper-menu/releases
+      - MIT License: license.md
+      - Contributing: https://github.com/willtheorangeguy/.github/blob/main/CONTRIBUTING.md
+      - Code of Conduct: https://github.com/willtheorangeguy/.github/blob/main/CODE_OF_CONDUCT.md
+      - Security: https://github.com/willtheorangeguy/.github/blob/main/SECURITY.md
+
+exclude_docs: |
+  docs.instructions.md
+  internal/
