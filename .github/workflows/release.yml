@@ -1,0 +1,41 @@
+name: Windows installer
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  installer:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Build and test installer
+        shell: pwsh
+        run: ./tests/Run-Tests.ps1 -InstallerPath (Join-Path $PWD 'WallpaperMenu-Setup.exe')
+
+      - name: Attach installer to release
+        if: github.event_name == 'release'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload --repo "$env:GITHUB_REPOSITORY" -- "$env:RELEASE_TAG" WallpaperMenu-Setup.exe
+
+      - name: Save installer from manual run
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v7
+        with:
+          name: WallpaperMenu-Setup
+          path: WallpaperMenu-Setup.exe
+          if-no-files-found: error

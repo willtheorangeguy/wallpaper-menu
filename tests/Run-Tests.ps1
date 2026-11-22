@@ -1,3 +1,7 @@
+param(
+    [string]$InstallerPath
+)
+
 $ErrorActionPreference = 'Stop'
 
 $repo = Split-Path -Parent $PSScriptRoot
@@ -18,6 +22,10 @@ try {
 
     & $tests
     if ($LASTEXITCODE -ne 0) { throw 'Wallpaper Menu tests failed.' }
+
+    if ($InstallerPath) {
+        [IO.File]::Copy($app, $InstallerPath, $true)
+    }
 }
 finally {
     foreach ($file in @($app, $tests)) {

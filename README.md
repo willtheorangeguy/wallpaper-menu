@@ -3,7 +3,7 @@
 Wallpaper Menu adds **Remove this wallpaper** to the Windows 11 desktop context menu. It is designed for a slideshow made from copies of your photos in `Pictures\Wallpapers`.
 
 1. In Windows **Settings → Personalization → Background**, choose **Slideshow** and select `Pictures\Wallpapers` as the source folder.
-2. Run `WallpaperMenu.exe` to install the menu for your Windows account.
+2. Download `WallpaperMenu-Setup.exe` and run it to install the menu for your Windows account. [GitHub Releases](https://github.com/willtheorangeguy/wallpaper-menu/releases)
 3. On the monitor showing the photo you want to remove, right-click an empty spot on the desktop and choose **Show more options → Remove this wallpaper**.
 
 The menu sends the photo to the Recycle Bin without an app confirmation. On systems where Windows only advances the next scheduled display, other displays may advance before the selected one changes.
@@ -21,3 +21,7 @@ To remove the context menu, run `%LOCALAPPDATA%\WallpaperMenu\WallpaperMenu.exe 
 ## Tests
 
 Run `./tests/Run-Tests.ps1` in PowerShell. It builds the app and tests file validation, monitor selection, and slideshow advancement using temporary files and simulated displays. GitHub Actions runs the same script on Windows for pushes and pull requests.
+
+## Releases
+
+Publishing a GitHub release builds the installer from the release tag, runs the tests, and attaches `WallpaperMenu-Setup.exe` to the release assets. Run **Windows installer** manually from the Actions tab to download a test build from that run.
