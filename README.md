@@ -17,3 +17,7 @@ From the repository folder, run this command in PowerShell on Windows 11. It use
 ```
 
 To remove the context menu, run `%LOCALAPPDATA%\WallpaperMenu\WallpaperMenu.exe --uninstall` from the Windows Run dialog.
+
+## Tests
+
+Run `./tests/Run-Tests.ps1` in PowerShell. It builds the app and tests file validation, monitor selection, and slideshow advancement using temporary files and simulated displays. GitHub Actions runs the same script on Windows for pushes and pull requests.

@@ -112,7 +112,7 @@ internal static class WallpaperMenu
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Wallpapers");
     }
 
-    private static string MonitorAt(IDesktopWallpaper desktop, Point cursor)
+    internal static string MonitorAt(IDesktopWallpaper desktop, Point cursor)
     {
         uint count = desktop.GetMonitorDevicePathCount();
         for (uint index = 0; index < count; index++)
@@ -127,7 +127,7 @@ internal static class WallpaperMenu
         throw new InvalidOperationException("Windows could not identify the monitor under the mouse pointer.");
     }
 
-    private static void ValidateWallpaper(string folder, string path)
+    internal static void ValidateWallpaper(string folder, string path)
     {
         if (String.IsNullOrWhiteSpace(path) || !Path.IsPathRooted(path))
             throw new InvalidOperationException("Windows did not report a wallpaper file on this monitor.");
@@ -169,7 +169,7 @@ internal static class WallpaperMenu
         }
     }
 
-    private static void RefreshMonitor(IDesktopWallpaper desktop, string monitor, string previousPath)
+    internal static void RefreshMonitor(IDesktopWallpaper desktop, string monitor, string previousPath)
     {
         if (!String.Equals(desktop.GetWallpaper(monitor), previousPath, StringComparison.OrdinalIgnoreCase))
             return;
@@ -240,13 +240,13 @@ internal static class WallpaperMenu
         out IntPtr item);
 
     [StructLayout(LayoutKind.Sequential)]
-    private struct MonitorRect
+    internal struct MonitorRect
     {
         public int Left, Top, Right, Bottom;
     }
 
     [ComImport, Guid("B92B56A9-8B55-4E14-9A89-0199BBB6F93B"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    private interface IDesktopWallpaper
+    internal interface IDesktopWallpaper
     {
         // Methods are declared in native vtable order. Unused slots are placeholders.
         void SetWallpaper();
